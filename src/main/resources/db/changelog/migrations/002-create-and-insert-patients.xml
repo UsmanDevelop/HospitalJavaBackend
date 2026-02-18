@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+
+    <!-- ChangeSet 1: Create patient table -->
+    <changeSet id="create-patient-table" author="usman">
+        <createTable tableName="patient">
+
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true"
+                             nullable="false"
+                             primaryKeyName="pk_patient"/>
+            </column>
+
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="disease" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+
+    <!-- ChangeSet 2: Insert 10 patients -->
+    <changeSet id="insert-patient-data" author="usman">
+
+        <insert tableName="patient">
+            <column name="name" value="Ali Khan"/>
+            <column name="disease" value="Flu"/>
+        </insert>
+
+        <insert tableName="patient">
+            <column name="name" value="Ahmed Raza"/>
+            <column name="disease" value="Diabetes"/>
+        </insert>
+
+        <insert tableName="patient">
+            <column name="name" value="Usman Malik"/>
+            <column name="disease" value="Fever"/>
+        </insert>
+
+        <insert tableName="patient">
+            <column name="name" value="Hassan Ali"/>
+            <column name="disease" value="Asthma"/>
+        </insert>
+
+        <insert tableName="patient">
+            <column name="name" value="Bilal Ahmed"/>
+            <column name="disease" value="Covid-19"/>
+        </insert>
+
+        <insert tableName="patient">
+            <column name="name" value="Saad Khan"/>
+            <column name="disease" value="Migraine"/>
+        </insert>
+
+        <insert tableName="patient">
+            <column name="name" value="Zain Malik"/>
+            <column name="disease" value="Allergy"/>
+        </insert>
+
+        <insert tableName="patient">
+            <column name="name" value="Omar Farooq"/>
+            <column name="disease" value="Hypertension"/>
+        </insert>
+
+        <insert tableName="patient">
+            <column name="name" value="Hamza Tariq"/>
+            <column name="disease" value="Typhoid"/>
+        </insert>
+
+        <insert tableName="patient">
+            <column name="name" value="Talha Sheikh"/>
+            <column name="disease" value="Cold"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

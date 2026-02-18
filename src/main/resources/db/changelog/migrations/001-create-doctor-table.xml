@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+       http://www.liquibase.org/xml/ns/dbchangelog
+       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <!-- ChangeSet to create doctor table -->
+    <changeSet id="1" author="usman">
+        <createTable tableName="doctor">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="VARCHAR(20)"/>
+            <column name="created_at" type="DATETIME" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="usman">
+        <insert tableName="doctor">
+            <column name="name" value="Dr. Ali Khan"/>
+            <column name="phone" value="03001234567"/>
+        </insert>
+        <insert tableName="doctor">
+            <column name="name" value="Dr. Sara Ahmed"/>
+            <column name="phone" value="03007654321"/>
+        </insert>
+        <insert tableName="doctor">
+            <column name="name" value="Dr. Hassan Raza"/>
+            <column name="phone" value="03009876543"/>
+        </insert>
+        <insert tableName="doctor">
+            <column name="name" value="Dr. Fatima Iqbal"/>
+            <column name="phone" value="03006543210"/>
+        </insert>
+        <insert tableName="doctor">
+            <column name="name" value="Dr. Ahmed Saeed"/>
+            <column name="phone" value="03003456789"/>
+        </insert>
+        <insert tableName="doctor">
+            <column name="name" value="Dr. Noor Shah"/>
+            <column name="phone" value="03007659874"/>
+        </insert>
+        <insert tableName="doctor">
+            <column name="name" value="Dr. Ayesha Tariq"/>
+            <column name="phone" value="03002345678"/>
+        </insert>
+        <insert tableName="doctor">
+            <column name="name" value="Dr. Bilal Qureshi"/>
+            <column name="phone" value="03004567890"/>
+        </insert>
+        <insert tableName="doctor">
+            <column name="name" value="Dr. Maria Khan"/>
+            <column name="phone" value="03005678901"/>
+        </insert>
+        <insert tableName="doctor">
+            <column name="name" value="Dr. Salman Farooq"/>
+            <column name="phone" value="03006789012"/>
+        </insert>
+    </changeSet>
+
+
+</databaseChangeLog>
