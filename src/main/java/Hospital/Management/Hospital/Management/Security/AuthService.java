@@ -32,7 +32,7 @@ public class AuthService {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequestDto.getUsername(),
-                        passwordEncoder.encode(loginRequestDto.getPassword()))
+                        loginRequestDto.getPassword())
         );
 
         User user = (User) authentication.getPrincipal();
@@ -55,5 +55,11 @@ public class AuthService {
         );
 
         return new SignupResponseDto(user.getId(), user.getUsername());
+    }
+
+    public String getUsernameFromToken(String tokenHeader) {
+
+
+
     }
 }
