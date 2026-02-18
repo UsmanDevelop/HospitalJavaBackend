@@ -9,6 +9,8 @@ import Hospital.Management.Hospital.Management.Repository.UserRepo;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,18 +19,20 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final AuthUtil authUtil;
     private final UserRepo userRepo;
+    private final PasswordEncoder passwordEncoder;
 
-    public AuthService(AuthenticationManager authenticationManager, AuthUtil authUtil, UserRepo userRepo) {
+    public AuthService(AuthenticationManager authenticationManager, AuthUtil authUtil, UserRepo userRepo, BCryptPasswordEncoder bCryptPasswordEncoder, PasswordEncoder passwordEncoder) {
         this.authenticationManager = authenticationManager;
         this.authUtil = authUtil;
         this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public LoginResponseDto login (LoginRequestDto loginRequestDto){
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequestDto.getUsername(),
-                        loginRequestDto.getPassword())
+                        passwordEncoder.encode(loginRequestDto.getPassword()))
         );
 
         User user = (User) authentication.getPrincipal();
@@ -36,8 +40,6 @@ public class AuthService {
         String token = authUtil.generateKey(user);
 
         return new LoginResponseDto(token, user.getId());
-
-
     }
 
     public SignupResponseDto signup(SignupRequestDto signupRequestDto) {
@@ -48,7 +50,7 @@ public class AuthService {
 
         user = userRepo.save(User.builder()
                 .username(signupRequestDto.getUsername())
-                .password(signupRequestDto.getPassword())
+                .password(passwordEncoder.encode(signupRequestDto.getPassword()))
                 .build()
         );
 
