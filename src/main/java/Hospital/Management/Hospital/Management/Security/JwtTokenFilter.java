@@ -12,10 +12,10 @@ import java.io.IOException;
 @Slf4j
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-    private final AuthService authService;
+    private final AuthUtil authUtil;
 
-    public JwtTokenFilter(AuthService authService) {
-        this.authService = authService;
+    public JwtTokenFilter(AuthUtil authUtil) {
+        this.authUtil = authUtil;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
         String token = tokenHeader.split("Bearer")[1];
 
-        String username = authService.getUsernameFromToken(token);
+        String username = authUtil.getUsernameFromToken(token);
 
     }
 }

@@ -56,10 +56,4 @@ public class AuthService {
 
         return new SignupResponseDto(user.getId(), user.getUsername());
     }
-
-    public String getUsernameFromToken(String tokenHeader) {
-
-
-
-    }
 }
